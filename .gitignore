@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+*.iobj
+*.ipdb
+*.pdb
+*.bat
+*.tlog
+*.recipe
+*.log
+*.idb
+*.ilk
+*.ipch
+*.db
+LiteBase-TF2/.vs/LiteBase-TF2/v16/.suo
