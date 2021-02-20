@@ -94,7 +94,6 @@ void CCore::Load()
 	//Other
 	{
 		g_Draw.ReloadFonts();
-		g_Draw.UpdateScreenSize();
 	}
 
 	//Hooks

@@ -1,5 +1,5 @@
 #pragma once
-#include "baseanimating.h"
+#include "baseprojectile.h"
 
 class CBaseCombatWeapon : public CBaseAnimating
 {

@@ -80,7 +80,7 @@ public:
 	inline bool CanPrimaryAttack(CTFPlayer *pOwner)
 	{
 		bool bOut = false;
-
+		
 		if (pOwner)
 			bOut = m_flNextPrimaryAttack() < (static_cast<float>(pOwner->m_nTickBase()) * I::GlobalVars->interval_per_tick);
 
@@ -96,4 +96,46 @@ public:
 
 		return bOut;
 	}
+};
+
+class CTFKnife : public CTFWeaponBase
+{
+public:
+	NETVAR(m_bReadyToBackstab, bool, "CTFKnife", "m_bReadyToBackstab");
+	NETVAR(m_bKnifeExists, bool, "CTFKnife", "m_bKnifeExists");
+	NETVAR(m_flKnifeRegenerateDuration, float, "CTFKnife", "m_flKnifeRegenerateDuration");
+	NETVAR(m_flKnifeMeltTimestamp, float, "CTFKnife", "m_flKnifeMeltTimestamp");
+};
+
+class CTFMinigun : public CTFWeaponBase
+{
+public:
+	NETVAR(m_iWeaponState, int, "CTFMinigun", "m_iWeaponState");
+	NETVAR(m_bCritShot, bool, "CTFMinigun", "m_bCritShot");
+};
+
+class CWeaponMedigun : public CTFWeaponBase
+{
+public:
+	NETVAR(m_hHealingTarget, int, "CWeaponMedigun", "m_hHealingTarget");
+	NETVAR(m_bHealing, bool, "CWeaponMedigun", "m_bHealing");
+	NETVAR(m_bAttacking, bool, "CWeaponMedigun", "m_bAttacking");
+	NETVAR(m_bChargeRelease, bool, "CWeaponMedigun", "m_bChargeRelease");
+	NETVAR(m_bHolstered, bool, "CWeaponMedigun", "m_bHolstered");
+	NETVAR(m_nChargeResistType, int, "CWeaponMedigun", "m_nChargeResistType");
+	NETVAR(m_hLastHealingTarget, int, "CWeaponMedigun", "m_hLastHealingTarget");
+	NETVAR(m_flChargeLevel, float, "CWeaponMedigun", "m_flChargeLevel");
+};
+
+class CTFPipebombLauncher : public CTFWeaponBase
+{
+public:
+	NETVAR(m_iPipebombCount, int, "CTFPipebombLauncher", "m_iPipebombCount");
+	NETVAR(m_flChargeBeginTime, float, "CTFPipebombLauncher", "m_flChargeBeginTime");
+};
+
+class CTFSniperRifle : public CTFWeaponBase
+{
+public:
+	NETVAR(m_flChargedDamage, float, "CTFSniperRifle", "m_flChargedDamage");
 };

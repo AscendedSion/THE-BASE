@@ -16,8 +16,8 @@ public:
 	NETVAR(m_flPoseParameter, void *, "CBaseAnimating", "m_flPoseParameter");
 	NETVAR(m_flPlaybackRate, float, "CBaseAnimating", "m_flPlaybackRate");
 	NETVAR(m_flEncodedController, void *, "CBaseAnimating", "m_flEncodedController");
-	NETVAR(m_bClientSideAnimation, int, "CBaseAnimating", "m_bClientSideAnimation");
-	NETVAR(m_bClientSideFrameReset, int, "CBaseAnimating", "m_bClientSideFrameReset");
+	NETVAR(m_bClientSideAnimation, bool, "CBaseAnimating", "m_bClientSideAnimation");
+	NETVAR(m_bClientSideFrameReset, bool, "CBaseAnimating", "m_bClientSideFrameReset");
 	NETVAR(m_nNewSequenceParity, int, "CBaseAnimating", "m_nNewSequenceParity");
 	NETVAR(m_nResetEventsParity, int, "CBaseAnimating", "m_nResetEventsParity");
 	NETVAR(m_nMuzzleFlashParity, int, "CBaseAnimating", "m_nMuzzleFlashParity");

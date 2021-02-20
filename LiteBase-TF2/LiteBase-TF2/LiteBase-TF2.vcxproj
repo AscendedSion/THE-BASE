@@ -195,6 +195,7 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\baseflex.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseobject.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseplayer.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\baseprojectile.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\bitbuf.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\cdll_int.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\checksum_crc.h" />

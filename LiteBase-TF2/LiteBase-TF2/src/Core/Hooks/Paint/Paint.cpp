@@ -13,7 +13,7 @@ void __fastcall Hooks::Paint::Func(void *ecx, void *edx, int mode)
 
 		I::Surface->StartDrawing();
 		{
-
+			
 		}
 		I::Surface->FinishDrawing();
 	}

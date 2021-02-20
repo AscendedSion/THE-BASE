@@ -114,5 +114,6 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\icvar.h" />
     <ClInclude Include="src\Core\Hooks\DrawModelExecute\DrawModelExecute.h" />
     <ClInclude Include="src\Core\Hooks\IsPlayerOnSteamFriendsList\IsPlayerOnSteamFriendsList.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\baseprojectile.h" />
   </ItemGroup>
 </Project>
