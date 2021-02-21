@@ -2,7 +2,6 @@
 
 LONG __stdcall Hooks::WndProc::Func(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	g_InputManager.WndProc(uMsg, wParam, lParam);
 	return CallWindowProc(Original, hWnd, uMsg, wParam, lParam);
 }
 

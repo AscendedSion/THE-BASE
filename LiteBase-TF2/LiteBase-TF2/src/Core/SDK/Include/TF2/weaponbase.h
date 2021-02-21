@@ -3,6 +3,7 @@
 #include "GameEventListener.h"
 #include "ihasowner.h"
 #include "globalvars_base.h"
+#include "tf_player.h"
 
 class CTFWeaponBase : public CBaseCombatWeapon, public IHasOwner, public CGameEventListener
 {

@@ -15,11 +15,6 @@ void __fastcall Hooks::FrameStageNotify::Func(void *ecx, void *edx, ClientFrameS
 			g_EntityCache.Fill();
 			break;
 		}
-
-		case ClientFrameStage_t::FRAME_RENDER_START: {
-			g_InputManager.Process();
-			break;
-		}
 	}
 }
 

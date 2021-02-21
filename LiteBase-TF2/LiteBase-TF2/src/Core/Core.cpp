@@ -1,5 +1,6 @@
 #include "Core.h"
 
+//THIS USES THE WRONG CLASS NAMES, PLEASE DOUBLE CHECK WHEN USING!
 //std::ofstream File;
 //
 //void DumpTable(RecvTable *pTable, int nDepth)

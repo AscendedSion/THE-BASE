@@ -43,4 +43,5 @@ public:
 	NETVAR(m_bAnimatedEveryTick, bool, "CBaseEntity", "m_bAnimatedEveryTick");
 	NETVAR(m_bAlternateSorting, bool, "CBaseEntity", "m_bAlternateSorting");
 	NETVAR(m_nModelIndexOverrides, void *, "CBaseEntity", "m_nModelIndexOverrides");
+	NETVAR(movetype, int, "CBaseEntity", "movetype");
 };

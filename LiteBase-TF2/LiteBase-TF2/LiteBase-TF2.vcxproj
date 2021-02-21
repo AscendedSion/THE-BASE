@@ -155,7 +155,6 @@
     <ClCompile Include="src\Core\Hooks\WndProc\WndProc.cpp" />
     <ClCompile Include="src\Core\SDK\Include\Draw\Draw.cpp" />
     <ClCompile Include="src\Core\SDK\Include\EntityCache\EntityCache.cpp" />
-    <ClCompile Include="src\Core\SDK\Include\InputManager\InputManager.cpp" />
     <ClCompile Include="src\Core\SDK\Include\TF2\bitbuf.cpp" />
     <ClCompile Include="src\Core\SDK\Include\TF2\checksum_crc.cpp" />
     <ClCompile Include="src\Core\SDK\Include\TF2\keyvalues.cpp" />
@@ -185,7 +184,6 @@
     <ClInclude Include="src\Core\SDK\Include\Draw\Draw.h" />
     <ClInclude Include="src\Core\SDK\Include\EntityCache\EntityCache.h" />
     <ClInclude Include="src\Core\SDK\Include\Include.h" />
-    <ClInclude Include="src\Core\SDK\Include\InputManager\InputManager.h" />
     <ClInclude Include="src\Core\SDK\Include\NetVarManager\NetVarManager.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseanimating.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseanimatingoverlay.h" />
