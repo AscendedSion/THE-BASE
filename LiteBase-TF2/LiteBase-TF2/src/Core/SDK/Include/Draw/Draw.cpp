@@ -2,8 +2,7 @@
 
 void CDraw::ReloadFonts()
 {
-	//these are here in case I decide to do changable(at runtime) fonts
-	g_Fonts[EFonts::DEBUG] = { "Arial", 15, FONTFLAG_OUTLINE };
+	g_Fonts[EFonts::DEBUG] = { "Verdana", 16, FONTFLAG_OUTLINE };
 
 	for (auto &v : g_Fonts)
 		I::Surface->SetFontGlyphSet(v.second.m_dwFont = I::Surface->CreateFont(), v.second.m_szName, v.second.m_nTall, 0, 0, 0, v.second.m_nFlags);

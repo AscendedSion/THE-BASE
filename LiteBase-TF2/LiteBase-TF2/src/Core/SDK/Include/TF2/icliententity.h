@@ -3,7 +3,7 @@
 #include "iclientnetworkable.h"
 #include "iclientthinkable.h"
 #include "const_light.h"
-#include "../NetVarManager/NetVarManager.h"
+#include "../NetVar/NetVar.h"
 
 struct SpatializationInfo_t;
 

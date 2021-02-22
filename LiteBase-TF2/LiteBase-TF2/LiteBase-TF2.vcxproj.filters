@@ -23,9 +23,9 @@
     <ClCompile Include="src\Core\Hooks\LevelInitPreEntity\LevelInitPreEntity.cpp" />
     <ClCompile Include="src\Core\SDK\Include\EntityCache\EntityCache.cpp" />
     <ClCompile Include="src\Core\Hooks\WndProc\WndProc.cpp" />
-    <ClCompile Include="src\Core\Features\AutoJump\AutoJump.cpp" />
     <ClCompile Include="src\Core\Hooks\DrawModelExecute\DrawModelExecute.cpp" />
     <ClCompile Include="src\Core\Hooks\IsPlayerOnSteamFriendsList\IsPlayerOnSteamFriendsList.cpp" />
+    <ClCompile Include="src\Core\Features\Example\Example.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.h" />
@@ -55,7 +55,6 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\cdll_int.h" />
     <ClInclude Include="src\Core\Utils\UtlVector\UtlVector.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\bitbuf.h" />
-    <ClInclude Include="src\Core\SDK\Include\NetVarManager\NetVarManager.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\icliententitylist.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iclientthinkable.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iclientunknown.h" />
@@ -104,7 +103,6 @@
     <ClInclude Include="src\Core\Hooks\LevelInitPreEntity\LevelInitPreEntity.h" />
     <ClInclude Include="src\Core\SDK\Include\EntityCache\EntityCache.h" />
     <ClInclude Include="src\Core\Hooks\WndProc\WndProc.h" />
-    <ClInclude Include="src\Core\Features\AutoJump\AutoJump.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\IEngineTrace.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\ICollideable.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iconvar.h" />
@@ -113,5 +111,9 @@
     <ClInclude Include="src\Core\Hooks\DrawModelExecute\DrawModelExecute.h" />
     <ClInclude Include="src\Core\Hooks\IsPlayerOnSteamFriendsList\IsPlayerOnSteamFriendsList.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseprojectile.h" />
+    <ClInclude Include="src\Core\Features\Example\Example.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\studio.h" />
+    <ClInclude Include="src\Core\SDK\Include\NetVar\NetVar.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\iprediction.h" />
   </ItemGroup>
 </Project>

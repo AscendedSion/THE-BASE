@@ -1,4 +1,5 @@
 #include "Paint.h"
+#include "../../Features/Example/Example.h"
 
 void __fastcall Hooks::Paint::Func(void *ecx, void *edx, int mode)
 {
@@ -13,7 +14,7 @@ void __fastcall Hooks::Paint::Func(void *ecx, void *edx, int mode)
 
 		I::Surface->StartDrawing();
 		{
-
+			g_Example.Run();
 		}
 		I::Surface->FinishDrawing();
 	}

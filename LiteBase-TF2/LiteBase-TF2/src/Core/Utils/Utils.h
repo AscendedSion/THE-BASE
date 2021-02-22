@@ -41,6 +41,14 @@ public:
 
 namespace Utils
 {
+	inline std::wstring ConvertUtf8ToWide(const std::string_view &str)
+	{
+		int count = MultiByteToWideChar(CP_UTF8, 0, str.data(), str.length(), NULL, 0);
+		std::wstring wstr(count, 0);
+		MultiByteToWideChar(CP_UTF8, 0, str.data(), str.length(), &wstr[0], count);
+		return wstr;
+	}
+
 	inline float CLR2FLT(unsigned char x) {
 		return (static_cast<float>(x) / 255.0f);
 	}
@@ -204,6 +212,12 @@ namespace Utils
 			result = 0.0f;
 
 		return result;
+	}
+
+	inline void VectorTransform(const Vec3 &input, const matrix3x4_t &matrix, Vec3 &output)
+	{
+		for (auto i = 0; i < 3; i++)
+			output[i] = input.Dot((Vec3 &)matrix[i]) + matrix[i][3];
 	}
 
 #pragma warning (pop)

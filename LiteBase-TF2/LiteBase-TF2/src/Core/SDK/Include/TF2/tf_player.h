@@ -3,6 +3,7 @@
 #include "tf_mvm_boss_progress_user.h"
 #include "econ_item_inventory.h"
 #include "ihasattributes.h"
+#include "globalvars_base.h"
 
 class CTFPlayer : public CBasePlayer, public IHasAttributes, public IInventoryUpdateListener, public CTFMvMBossProgressUser
 {
@@ -176,7 +177,7 @@ public:
 	NETVAR(m_iPlayerSkinOverride, int, "CTFPlayer", "m_iPlayerSkinOverride");
 	NETVAR(m_bViewingCYOAPDA, bool, "CTFPlayer", "m_bViewingCYOAPDA");
 
-	//KGB
+	//credits to KGB
 	inline bool InCond(const ETFCond cond)
 	{
 		const int iCond = static_cast<int>(cond);
@@ -257,5 +258,57 @@ public:
 		Vec3 vOut = Vec3();
 		FN(this, &vOut);
 		return vOut;
+	}
+
+	inline int GetNumOfHitboxes()
+	{
+		if (auto pModel = GetModel())
+		{
+			if (auto pHDR = I::ModelInfo->GetStudiomodel(pModel))
+			{
+				if (auto pSet = pHDR->GetHitboxSet(m_nHitboxSet()))
+					return pSet->numhitboxes;
+			}
+		}
+
+		return 0;
+	}
+
+	inline Vec3 GetHitboxPos(int nHitbox)
+	{
+		if (auto pModel = GetModel())
+		{
+			if (auto pHDR = I::ModelInfo->GetStudiomodel(pModel))
+			{
+				matrix3x4_t BoneMatrix[128];
+
+				if (SetupBones(BoneMatrix, 128, 0x100, I::GlobalVars->curtime))
+				{
+					if (auto pSet = pHDR->GetHitboxSet(m_nHitboxSet()))
+					{
+						if (auto pBox = pSet->pHitbox(nHitbox))
+						{
+							Vec3 vPos = (pBox->bbmin + pBox->bbmax) * 0.5f, vOut;
+							Utils::VectorTransform(vPos, BoneMatrix[pBox->bone], vOut);
+							return vOut;
+						}
+					}
+				}
+			}
+		}
+
+		return {};
+	}
+
+	inline const char *GetPlayerName()
+	{
+		const char *szOut = "UNKNOWN_NAME";
+
+		player_info_t pi = {};
+
+		if (I::EngineClient->GetPlayerInfo(entindex(), &pi))
+			szOut = pi.m_sName;
+
+		return szOut;
 	}
 };

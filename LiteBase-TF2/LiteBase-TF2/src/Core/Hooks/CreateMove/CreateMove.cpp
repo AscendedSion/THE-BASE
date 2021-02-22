@@ -1,5 +1,4 @@
 #include "CreateMove.h"
-#include "../../Features/AutoJump/AutoJump.h"
 
 bool __fastcall Hooks::CreateMove::Func(void *ecx, void *edx, float flInputSampleTime, CUserCmd *pCmd)
 {
@@ -9,7 +8,7 @@ bool __fastcall Hooks::CreateMove::Func(void *ecx, void *edx, float flInputSampl
 	if (!pCmd || !pCmd->command_number)
 		return Hook.CallOriginal<fn>()(ecx, edx, flInputSampleTime, pCmd);
 
-	g_AutoJump.Run(pCmd);
+	
 
 	return Hook.CallOriginal<fn>()(ecx, edx, flInputSampleTime, pCmd);
 }

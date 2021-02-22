@@ -1,7 +1,7 @@
 #include "Core.h"
 
-//THIS USES THE WRONG CLASS NAMES, PLEASE DOUBLE CHECK WHEN USING!
 //std::ofstream File;
+//const char *szClassName;
 //
 //void DumpTable(RecvTable *pTable, int nDepth)
 //{
@@ -10,15 +10,8 @@
 //
 //	const char *Types[7] = { "int", "float", "Vec3", "Vec2", "const char *", "Array", "void *" };
 //
-//	static std::string sClassName = pTable->GetName();
-//	
-//	if (nDepth == 0) {
-//		sClassName = pTable->GetName();
-//		sClassName.replace(0, 3, "C");
-//	}
-//
 //	if (nDepth == 0)
-//		File << "class " << sClassName << "\n{\npublic:\n";
+//		File << "class " << szClassName << "\n{\npublic:\n";
 //
 //	for (int n = 0; n < pTable->m_nProps; n++)
 //	{
@@ -32,8 +25,13 @@
 //		if (!sVarName.find("baseclass") || !sVarName.find("0") || !sVarName.find("1") || !sVarName.find("2"))
 //			continue;
 //
+//		const char *szType = Types[pProp->GetType()];
+//
+//		if (sVarName.find("m_b") == 0 && pProp->GetType() == 0)
+//			szType = "bool";
+//
 //		if (pProp->GetOffset())
-//			File << "\tNETVAR(" << pProp->GetName() << ", " << Types[pProp->GetType()] << ", \"" << sClassName << "\", \"" << pProp->GetName() << "\");\n";
+//			File << "\tNETVAR(" << sVarName << ", " << szType << ", \"" << szClassName << "\", \"" << sVarName << "\");\n";
 //
 //		if (auto DataTable = pProp->GetDataTable())
 //			DumpTable(DataTable, nDepth + 1);
@@ -45,24 +43,12 @@
 //
 //void DumpTables()
 //{
-//	File.open("NETVAR_DUMP.h");
+//	File.open("NETVAR_DUMP_NEW.h");
 //
-//	for (ClientClass *pClass = g_pBaseClientDLL->GetAllClasses(); pClass; pClass = pClass->m_pNext)
+//	for (ClientClass *pClass = I::BaseClientDLL->GetAllClasses(); pClass; pClass = pClass->m_pNext) {
+//		szClassName = pClass->m_pNetworkName;
 //		DumpTable(pClass->m_pRecvTable, 0);
-//
-//	File.close();
-//}
-
-//void DumpClassIds()
-//{
-//	std::ofstream File("ClassIds.h");
-//
-//	File << "enum EClassIds" << "\n{\n";
-//
-//	for (auto pCurr = I::BaseClientDLL->GetAllClasses(); pCurr; pCurr = pCurr->m_pNext)
-//		File << "\t" << pCurr->m_pNetworkName << " = " << pCurr->m_ClassID << ",\n";
-//
-//	File << "};";
+//	}
 //
 //	File.close();
 //}
@@ -70,7 +56,7 @@
 void CCore::Load()
 {
 	while (!GetModuleHandleW(L"mss32.dll"))
-		Sleep(2500); //https://youtu.be/Ny_HsSmiL9A?t=62
+		Sleep(2500); //we sleepin'
 
 	//Interfaces
 	{
@@ -90,6 +76,7 @@ void CCore::Load()
 		I::GlobalVars = I::PlayerInfoManager->GetGlobalVars();
 		I::EngineTrace = reinterpret_cast<IEngineTrace *>(g_Interface.Get(L"engine.dll", "EngineTraceClient003"));
 		I::CVar = reinterpret_cast<ICvar *>(g_Interface.Get(L"vstdlib.dll", "VEngineCvar004"));
+		I::Prediction = reinterpret_cast<CPrediction *>(g_Interface.Get(L"client.dll", "VClientPrediction001"));
 	}
 	
 	//Other
@@ -114,12 +101,15 @@ void CCore::Load()
 		}
 		MH_EnableHook(MH_ALL_HOOKS);
 	}
+
+	I::CVar->ConsoleColorPrintf({ 0, 148, 50, 255 }, "Hake Loaded!\n");
 }
 
 void CCore::Unload()
 {
 	MH_Uninitialize();
 	SetWindowLongPtr(Hooks::WndProc::hwWindow, GWL_WNDPROC, (LONG_PTR)Hooks::WndProc::Original);
+	I::CVar->ConsoleColorPrintf({ 237, 76, 103, 255 }, "Hake Unloaded!\n");
 }
 
 bool CCore::ShouldUnload()

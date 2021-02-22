@@ -142,7 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Core.cpp" />
-    <ClCompile Include="src\Core\Features\AutoJump\AutoJump.cpp" />
+    <ClCompile Include="src\Core\Features\Example\Example.cpp" />
     <ClCompile Include="src\Core\Hooks\CreateMove\CreateMove.cpp" />
     <ClCompile Include="src\Core\Hooks\DrawModelExecute\DrawModelExecute.cpp" />
     <ClCompile Include="src\Core\Hooks\FrameStageNotify\FrameStageNotify.cpp" />
@@ -169,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.h" />
-    <ClInclude Include="src\Core\Features\AutoJump\AutoJump.h" />
+    <ClInclude Include="src\Core\Features\Example\Example.h" />
     <ClInclude Include="src\Core\Hooks\CreateMove\CreateMove.h" />
     <ClInclude Include="src\Core\Hooks\DrawModelExecute\DrawModelExecute.h" />
     <ClInclude Include="src\Core\Hooks\FrameStageNotify\FrameStageNotify.h" />
@@ -184,7 +184,7 @@
     <ClInclude Include="src\Core\SDK\Include\Draw\Draw.h" />
     <ClInclude Include="src\Core\SDK\Include\EntityCache\EntityCache.h" />
     <ClInclude Include="src\Core\SDK\Include\Include.h" />
-    <ClInclude Include="src\Core\SDK\Include\NetVarManager\NetVarManager.h" />
+    <ClInclude Include="src\Core\SDK\Include\NetVar\NetVar.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseanimating.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\baseanimatingoverlay.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\basecombatcharacter.h" />
@@ -226,6 +226,7 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\imaterialsystem.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\interface.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iplayerinfo.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\iprediction.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\ISurface.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\itexture.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\ivdebugoverlay.h" />
@@ -233,6 +234,7 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\ivmodelrender.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\ivrenderview.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\keyvalues.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\studio.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\TF2.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\tf_mvm_boss_progress_user.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\tf_player.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "baseflex.h"
+#include "studio.h"
 
 class CBaseCombatCharacter : public CBaseFlex
 {
