@@ -14,7 +14,6 @@ using QAngle = Vector;
 using LightCacheHandle_t = void *;
 struct Ray_t;
 class ColorMeshInfo_t;
-class LightDesc_t {};
 
 struct DrawModelState_t
 {

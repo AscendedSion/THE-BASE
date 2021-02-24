@@ -1,5 +1,5 @@
 #pragma once
-#include "imaterial.h"
+#include "imatrendercontext.h"
 #include "keyvalues.h"
 
 class IMaterialSystemHardwareConfig;
@@ -10,11 +10,9 @@ class ModeChangeCallbackFunc_t;
 class MaterialSystemHardwareIdentifier_t;
 class HDRType_t;
 class MaterialBufferReleaseFunc_t;
-class IAsyncTextureOperationReceiver;
 class MaterialBufferRestoreFunc_t;
 class MaterialSystem_SortInfo_t;
 class MaterialLock_t;
-class IMatRenderContext;
 class MaterialContextType_t;
 class ITextureCompositor;
 class IShader;
