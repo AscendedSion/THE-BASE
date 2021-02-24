@@ -4,9 +4,14 @@ void CEntityCache::Fill()
 {
 	if (m_pLocal = GET_ENT_I(LOCAL_IDX)->As<CTFPlayer>())
 	{
-		m_pWeapon = GET_ENT_H(m_pLocal->m_hActiveWeapon())->As<CTFWeaponBase>();
-
 		int nLocalTeam = m_pLocal->As<CTFPlayer>()->m_iTeamNum();
+
+		if (nLocalTeam == TEAM_SPECTATOR) {
+			m_pLocal = nullptr;
+			return;
+		}
+
+		m_pWeapon = GET_ENT_H(m_pLocal->m_hActiveWeapon())->As<CTFWeaponBase>();
 
 		for (int n = 1; n < I::ClientEntityList->GetHighestEntityIndex(); n++)
 		{
@@ -21,11 +26,11 @@ void CEntityCache::Fill()
 				{
 					int nPlayerTeam = pEntity->As<CTFPlayer>()->m_iTeamNum();
 
+					if (nPlayerTeam == TEAM_SPECTATOR)
+						continue;
+
 					m_Groups[EEntGroup::PLAYERS_ALL].push_back(pEntity);
 					m_Groups[nLocalTeam != nPlayerTeam ? EEntGroup::PLAYERS_ENEMIES : EEntGroup::PLAYERS_TEAMMATES].push_back(pEntity);
-
-					if (nPlayerTeam == TEAM_SPECTATOR)
-						m_Groups[EEntGroup::PLAYERS_SPECTATORS].push_back(pEntity);
 
 					break;
 				}
