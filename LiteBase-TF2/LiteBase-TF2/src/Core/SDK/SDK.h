@@ -53,4 +53,16 @@ namespace G
 
 		return false;
 	}
+
+	inline Color_t GetEntityColor(CBaseEntity *pEntity)
+	{
+		if (pEntity->entindex() == LOCAL_IDX || G::IsFriend(pEntity->As<CTFPlayer>()))
+			return { 50, 255, 60, 255 };
+
+		switch (pEntity->m_iTeamNum()) {
+			case 2: return { 255, 107, 107, 255 };
+			case 3: return { 72, 219, 251, 255 };
+			default: return { 255, 255, 255, 255 };
+		}
+	}
 }

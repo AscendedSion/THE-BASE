@@ -299,16 +299,4 @@ public:
 
 		return {};
 	}
-
-	inline const char *GetPlayerName()
-	{
-		const char *szOut = "UNKNOWN_NAME";
-
-		player_info_t pi = {};
-
-		if (I::EngineClient->GetPlayerInfo(entindex(), &pi))
-			szOut = pi.m_sName;
-
-		return szOut;
-	}
 };

@@ -6,7 +6,7 @@ void CEntityCache::Fill()
 	{
 		int nLocalTeam = m_pLocal->As<CTFPlayer>()->m_iTeamNum();
 
-		if (nLocalTeam == TEAM_SPECTATOR) {
+		if (nLocalTeam != TEAM_RED && nLocalTeam != TEAM_BLU) {
 			m_pLocal = nullptr;
 			return;
 		}
@@ -26,7 +26,7 @@ void CEntityCache::Fill()
 				{
 					int nPlayerTeam = pEntity->As<CTFPlayer>()->m_iTeamNum();
 
-					if (nPlayerTeam == TEAM_SPECTATOR)
+					if (nPlayerTeam != TEAM_RED && nPlayerTeam != TEAM_BLU)
 						continue;
 
 					m_Groups[EEntGroup::PLAYERS_ALL].push_back(pEntity);

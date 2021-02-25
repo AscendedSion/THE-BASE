@@ -4,8 +4,8 @@ bool __fastcall Hooks::IsPlayerOnSteamFriendsList::Func(void *ecx, void *edx, CB
 {
 	bool bOriginal = Hook.CallOriginal<fn>()(ecx, edx, pPlayer);
 
-	if (pPlayer)
-		G::mapFriends[pPlayer->As<CTFPlayer>()] = bOriginal;
+	if (pPlayer && bOriginal)
+		G::mapFriends[pPlayer->As<CTFPlayer>()] = true;
 
 	return bOriginal;
 }

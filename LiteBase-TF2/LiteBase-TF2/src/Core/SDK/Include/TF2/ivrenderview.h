@@ -32,6 +32,14 @@ public:
 	virtual void SetBlend(float blend) = 0;
 	virtual float GetBlend(void) = 0;
 	virtual void SetColorModulation(float const *blend) = 0;
+	inline void SetColorModulation(float r, float g, float b) {
+		float clr[3] = { r, g, b };
+		SetColorModulation(clr);
+	}
+	inline void SetColorModulation(Color_t clr) {
+		Vec3 col = Utils::CLR2VEC(clr);
+		SetColorModulation(&col.x);
+	}
 	virtual void GetColorModulation(float *blend) = 0;
 	virtual void SceneBegin(void) = 0;
 	virtual void SceneEnd(void) = 0;

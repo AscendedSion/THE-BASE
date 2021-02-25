@@ -2,28 +2,48 @@
 
 void CExample::Run()
 {
+	if (I::EngineVGui->IsGameUIVisible())
+		return;
+
 	if (auto pLocal = g_EntityCache.GetLocal())
 	{
-		if (pLocal->m_iTeamNum() < 2 || pLocal->deadflag() || I::EngineVGui->IsGameUIVisible())
+		if (pLocal->deadflag())
 			return;
 
-		//thirdperson toggle
+		//ThirdPerson Toggle
 		{
 			static bool bToggle = false;
+			static float flLastHit = I::GlobalVars->curtime;
 
-			if (GetAsyncKeyState('R') & 1)
-				pLocal->m_nForceTauntCam() = static_cast<int>(bToggle = !bToggle);
+			if (GetAsyncKeyState('R') & 0x8000)
+			{
+				if ((I::GlobalVars->curtime - flLastHit) > 0.25f) {
+					pLocal->m_nForceTauntCam() = static_cast<int>(bToggle = !bToggle);
+					flLastHit = I::GlobalVars->curtime;
+				}
+			}
 		}
 
-		if (auto pWeapon = g_EntityCache.GetWeapon())
-		{
-			g_Draw.String(
-				g_Fonts[EFonts::DEBUG].m_dwFont,
-				200, 200,
-				{ 255, 255, 255, 255 }, TXT_DEFAULT,
-				L"pWeapon->CanHeadShot() -> %x", pWeapon->CanHeadShot(pLocal)
-			);
-		}
+		g_Draw.String(
+			g_Fonts[EFonts::DEBUG].m_dwFont,
+			200, 200,
+			{ 255, 255, 255, 255 }, TXT_CENTERXY,
+			L"PLAYERS_ALL -> %d", g_EntityCache.GetGroup(EEntGroup::PLAYERS_ALL).size()
+		);
+
+		g_Draw.String(
+			g_Fonts[EFonts::DEBUG].m_dwFont,
+			200, 220,
+			{ 255, 255, 255, 255 }, TXT_CENTERXY,
+			L"PLAYERS_ENEMIES -> %d", g_EntityCache.GetGroup(EEntGroup::PLAYERS_ENEMIES).size()
+		);
+
+		g_Draw.String(
+			g_Fonts[EFonts::DEBUG].m_dwFont,
+			200, 240,
+			{ 255, 255, 255, 255 }, TXT_CENTERXY,
+			L"PLAYERS_TEAMMATES -> %d", g_EntityCache.GetGroup(EEntGroup::PLAYERS_TEAMMATES).size()
+		);
 		
 		for (auto pEntity : g_EntityCache.GetGroup(EEntGroup::PLAYERS_ALL))
 		{
@@ -32,34 +52,24 @@ void CExample::Run()
 			if (pPlayer->deadflag())
 				continue;
 
-			Vec3 vScreen = {};
+			Vec3 vBody = {};
 
-			if (!Utils::W2S(pPlayer->GetAbsOrigin() + Vec3(0.0f, 0.0f, 40.0f), vScreen))
+			if (!Utils::W2S(pPlayer->GetHitboxPos(HITBOX_PELVIS), vBody))
 				continue;
 
 			bool bIsLocal = pPlayer == pLocal;
 
-			Color_t DrawColor = [&]() -> Color_t
-			{
-				if (bIsLocal || G::IsFriend(pPlayer))
-					return { 0, 255, 0, 255 };
-
-				switch (pPlayer->m_iTeamNum()) {
-					case 2: return { 255, 107, 107, 255 };
-					case 3: return { 72, 219, 251, 255 };
-					default: return { 255, 255, 255, 255 };
-				}
-			}();
+			Color_t DrawColor = G::GetEntityColor(pPlayer);
 
 			if (!bIsLocal)
 			{
-				Vec3 vHead = {};
+				Vec3 vOrigin = {};
 
-				if (Utils::W2S(pPlayer->GetHitboxPos(HITBOX_HEAD), vHead))
+				if (Utils::W2S(pPlayer->GetAbsOrigin(), vOrigin))
 				{
 					g_Draw.Line(
 						g_Draw.m_nScreenW / 2, g_Draw.m_nScreenH,
-						static_cast<int>(vHead.x), static_cast<int>(vHead.y),
+						static_cast<int>(vOrigin.x), static_cast<int>(vOrigin.y),
 						DrawColor
 					);
 				}
@@ -67,18 +77,23 @@ void CExample::Run()
 
 			int nTextOffset = 0;
 
+			player_info_t pi = {};
+
+			if (!I::EngineClient->GetPlayerInfo(pPlayer->entindex(), &pi))
+				continue;
+
 			g_Draw.String(
 				g_Fonts[EFonts::DEBUG].m_dwFont,
-				static_cast<int>(vScreen.x), static_cast<int>(vScreen.y) + nTextOffset,
+				static_cast<int>(vBody.x), static_cast<int>(vBody.y) + nTextOffset,
 				DrawColor, TXT_CENTERXY,
-				Utils::ConvertUtf8ToWide(pPlayer->GetPlayerName()).c_str()
+				Utils::ConvertUtf8ToWide(pi.m_sName).c_str()
 			);
 
 			nTextOffset += g_Fonts[EFonts::DEBUG].m_nTall;
 
 			g_Draw.String(
 				g_Fonts[EFonts::DEBUG].m_dwFont,
-				static_cast<int>(vScreen.x), static_cast<int>(vScreen.y) + nTextOffset,
+				static_cast<int>(vBody.x), static_cast<int>(vBody.y) + nTextOffset,
 				DrawColor, TXT_CENTERXY,
 				L"%d / %d", pPlayer->m_iHealth(), pPlayer->GetMaxHealth()
 			);
@@ -89,7 +104,7 @@ void CExample::Run()
 			{
 				g_Draw.String(
 					g_Fonts[EFonts::DEBUG].m_dwFont,
-					static_cast<int>(vScreen.x), static_cast<int>(vScreen.y) + nTextOffset,
+					static_cast<int>(vBody.x), static_cast<int>(vBody.y) + nTextOffset,
 					{ 255, 255, 0, 255 }, TXT_CENTERXY,
 					L"ZOOM"
 				);
