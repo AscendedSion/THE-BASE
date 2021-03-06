@@ -4,7 +4,7 @@ void CEntityCache::Fill()
 {
 	if (m_pLocal = GET_ENT_I(LOCAL_IDX)->As<CTFPlayer>())
 	{
-		int nLocalTeam = m_pLocal->As<CTFPlayer>()->m_iTeamNum();
+		int nLocalTeam = m_pLocal->m_iTeamNum();
 
 		if (nLocalTeam != TEAM_RED && nLocalTeam != TEAM_BLU) {
 			m_pLocal = nullptr;

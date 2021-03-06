@@ -2,7 +2,6 @@
 #include "iclientmode.h"
 
 class IMoveHelper;
-class CMoveHelper;
 using EntityHandle_t = CBaseHandle;
 
 class CMoveData
@@ -74,8 +73,8 @@ public:
 	virtual void SetViewAngles(QAngle &ang);
 	virtual void GetLocalViewAngles(QAngle &ang);
 	virtual void SetLocalViewAngles(QAngle &ang);
-	virtual void RunCommand(CBaseEntity *player, CUserCmd *ucmd, CMoveHelper *moveHelper);
-	virtual void SetupMove(CBaseEntity *player, CUserCmd *ucmd, CMoveHelper *pHelper, CMoveData *move);
+	virtual void RunCommand(CBaseEntity *player, CUserCmd *ucmd, IMoveHelper *moveHelper);
+	virtual void SetupMove(CBaseEntity *player, CUserCmd *ucmd, IMoveHelper *pHelper, CMoveData *move);
 	virtual void FinishMove(CBaseEntity *player, CUserCmd *ucmd, CMoveData *move);
 	virtual void SetIdealPitch(CBaseEntity *player, const Vec3 &origin, const Vec3 &angles, const Vec3 &viewheight);
 	virtual void _Update(bool received_new_world_update, bool validframe, int incoming_acknowledged, int outgoing_command);
@@ -86,11 +85,11 @@ public:
 	bool m_bFirstTimePredicted;
 	bool m_bOldCLPredictValue;
 	bool m_bEnginePaused;
-	int  m_nPreviousStartFrame;
-	int  m_nCommandsPredicted;
-	int  m_nServerCommandsAcknowledged;
-	int  m_bPreviousAckHadErrors;
-	int  m_nIncomingPacketNumber;
+	int m_nPreviousStartFrame;
+	int m_nCommandsPredicted;
+	int m_nServerCommandsAcknowledged;
+	int m_bPreviousAckHadErrors;
+	int m_nIncomingPacketNumber;
 	float m_flIdealPitch;
 };
 

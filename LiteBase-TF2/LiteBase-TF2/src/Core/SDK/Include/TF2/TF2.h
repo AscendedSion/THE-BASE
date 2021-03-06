@@ -4,7 +4,7 @@
 #include "tf_player.h"
 #include "weaponbase.h"
 #include "ivdebugoverlay.h"
-#include "iprediction.h"
+#include "imovehelper.h"
 #include "clientmode.h"
 #include "ivrenderview.h"
 #include "imaterialsystem.h"

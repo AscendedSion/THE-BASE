@@ -60,14 +60,13 @@ void CCore::Load()
 
 	//Interfaces
 	{
-		void *pClientTable = reinterpret_cast<void *>(g_Pattern.Find(L"client.dll", L"8B 0D ? ? ? ? 8B 02 D9 05"));
 		I::Surface = reinterpret_cast<ISurface *>(g_Interface.Get(L"vguimatsurface.dll", "VGUI_Surface030"));
 		I::EngineClient = reinterpret_cast<IVEngineClient013 *>(g_Interface.Get(L"engine.dll", "VEngineClient013"));
 		I::BaseClientDLL = reinterpret_cast<IBaseClientDLL *>(g_Interface.Get(L"client.dll", "VClient017"));
 		I::ClientEntityList = reinterpret_cast<IClientEntityList *>(g_Interface.Get(L"client.dll", "VClientEntityList003"));
 		I::ModelInfo = reinterpret_cast<IVModelInfo *>(g_Interface.Get(L"engine.dll", "VModelInfoClient006"));
 		I::DebugOverlay = reinterpret_cast<IVDebugOverlay *>(g_Interface.Get(L"engine.dll", "VDebugOverlay003"));
-		I::ClientModeShared = **reinterpret_cast<CClientModeShared ***>(reinterpret_cast<DWORD>(pClientTable) + 0x2);
+		I::ClientModeShared = **reinterpret_cast<CClientModeShared ***>(g_Pattern.Find(L"client.dll", L"8B 0D ? ? ? ? 8B 02 D9 05") + 0x2);
 		I::MaterialSystem = reinterpret_cast<IMaterialSystem *>(g_Interface.Get(L"materialsystem.dll", "VMaterialSystem081"));
 		I::ModelRender = reinterpret_cast<IVModelRender *>(g_Interface.Get(L"engine.dll", "VEngineModel016"));
 		I::EngineVGui = reinterpret_cast<IEngineVGui *>(g_Interface.Get(L"engine.dll", "VEngineVGui001"));
@@ -77,6 +76,7 @@ void CCore::Load()
 		I::EngineTrace = reinterpret_cast<IEngineTrace *>(g_Interface.Get(L"engine.dll", "EngineTraceClient003"));
 		I::CVar = reinterpret_cast<ICvar *>(g_Interface.Get(L"vstdlib.dll", "VEngineCvar004"));
 		I::Prediction = reinterpret_cast<CPrediction *>(g_Interface.Get(L"client.dll", "VClientPrediction001"));
+		I::MoveHelper = **reinterpret_cast<IMoveHelper ***>(g_Pattern.Find(L"client.dll", L"8B 0D ? ? ? ? 8B 46 08 68 ? ? ? ? 05 ? ? ? ? 8B 11 50") + 0x2);
 	}
 	
 	//Other

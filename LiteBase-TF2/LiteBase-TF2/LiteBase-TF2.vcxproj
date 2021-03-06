@@ -225,6 +225,7 @@
     <ClInclude Include="src\Core\SDK\Include\TF2\imaterial.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\imaterialsystem.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\imatrendercontext.h" />
+    <ClInclude Include="src\Core\SDK\Include\TF2\imovehelper.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\interface.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iplayerinfo.h" />
     <ClInclude Include="src\Core\SDK\Include\TF2\iprediction.h" />
