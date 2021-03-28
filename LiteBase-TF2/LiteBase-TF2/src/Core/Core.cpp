@@ -72,7 +72,7 @@ void CCore::Load()
 		I::EngineVGui = reinterpret_cast<IEngineVGui *>(g_Interface.Get(L"engine.dll", "VEngineVGui001"));
 		I::RenderView = reinterpret_cast<IVRenderView *>(g_Interface.Get(L"engine.dll", "VEngineRenderView014"));
 		I::PlayerInfoManager = reinterpret_cast<IPlayerInfoManager *>(g_Interface.Get(L"server.dll", "PlayerInfoManager002"));
-		I::GlobalVars = I::PlayerInfoManager->GetGlobalVars();
+		I::GlobalVars = *reinterpret_cast<CGlobalVarsBase **>(g_Pattern.Find(L"engine.dll", L"A1 ? ? ? ? 8B 11 68") + 0x8);
 		I::EngineTrace = reinterpret_cast<IEngineTrace *>(g_Interface.Get(L"engine.dll", "EngineTraceClient003"));
 		I::CVar = reinterpret_cast<ICvar *>(g_Interface.Get(L"vstdlib.dll", "VEngineCvar004"));
 		I::Prediction = reinterpret_cast<CPrediction *>(g_Interface.Get(L"client.dll", "VClientPrediction001"));
