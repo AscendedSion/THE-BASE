@@ -62,7 +62,7 @@ struct Ray_t
 		m_IsRay = (m_Extents.LenghtSqr() < 1e-6);
 		m_StartOffset = mins + maxs;
 		m_StartOffset *= 0.5f;
-		m_Start = start - m_StartOffset;
+		m_Start = start + m_StartOffset;
 		m_StartOffset *= -1.0f;
 	}
 
